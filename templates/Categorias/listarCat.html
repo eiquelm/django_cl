@@ -1,0 +1,62 @@
+{%extends 'adminlte/base.html'%}
+{% block content %}
+
+<div class="table-responsive">
+  <table id="categories-datatable" class="table table-striped table-bordered nowrap" width="100%">
+    <thead>
+    <tr>
+      <th data-priority="0">Habilitada</th>
+      {% comment %} <th data-priority="1">Id Categoria</th> {% endcomment %}
+      <th data-priority="2">Nombre de la Categoria</th>
+      <th data-priority="3">Margen o Porciento</th>
+      <th data-priority="4">Margen Comercial CUP</th>
+      <th colspan="" data-priority="5">Opciones</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for categoria in categorias %}
+        <tr>
+          <td><input type="checkbox" {% if categoria.habilitada %} checked="checked"{% endif %} disabled="disabled"></td>
+          {% comment %} <td>{{categoria.id}}</td> {% endcomment %}
+          <td>{{categoria.nombre}}</td>
+          <td><input type="checkbox" {% if categoria.margporc %} checked="checked"{% endif %} disabled="disabled" ></td>
+          <td>{{categoria.valormag}}</td>
+          <td><a href="editarCategoria/{{categoria.id}}" class="btn btn-info">Editar</a>
+          <a href="eliminarCategoria/{{categoria.slug}}" class="btn btn-danger">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+
+
+{% endblock%}
+
+{% block javascript %}
+{% include 'adminlte/lib/_scripts.html' %}
+{% block js %}
+<script>
+    $(function () {
+
+      $('#categories-datatable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "language": {
+            url: '//cdn.datatables.net/plug-ins/2.0.7/i18n/es-MX.json',
+        },
+      }).buttons().container().appendTo('#categories-datatable_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+{% endblock %}
+{% endblock %}
