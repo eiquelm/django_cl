@@ -7,7 +7,7 @@
         <strong class="card-title">Listado de Categorias</strong>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-primary" onclick="abrir_modal_creacion('#');">REGISTRAR CATEGORIA</button>
+        <button type="button" class="btn btn-primary" onclick="abrir_modal_creacion('{% url 'cl_app:crear_categoria' %}');">REGISTRAR CATEGORIA</button>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
           <td>{{categoria.nombre}}</td>
           <td><input type="checkbox" {% if categoria.margporc %} checked="checked"{% endif %} disabled="disabled" ></td>
           <td>{{categoria.valormag}}</td>
-          <td><a href="{% url 'cl_app:editar_categoria' categoria.slug %}" class="btn btn-info">Editar</a>
+          <td><button onclick="abrir_modal_creacion('{% url 'cl_app:editar_categoria' categoria.slug %}')" class="btn btn-info">Editar</button>
           <a href="{% url 'cl_app:eliminar_categoria' categoria.slug %}" class="btn btn-danger">Eliminar</a></td>
         </tr>
         {% endfor %}
@@ -78,6 +78,12 @@
   </script>
 {% endblock %}
 {% block extra_js %}
-
- {% endblock %}
+<script type="text/javascript">
+  function abrir_modal_creacion(url){
+    $('#edicion').load(url, function(){
+      $(this).modal('show');
+    });
+  }
+</script>
+{% endblock %}
 {% endblock %}

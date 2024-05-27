@@ -31,7 +31,7 @@ class CategoriaForm(forms.ModelForm):
                     'id':'margporc'
                 }
             ),
-            'valormag': forms.TextInput(
+            'valormag': forms.NumberInput(
                 attrs= {
                     'class':'form-control',
                     'id':'valormag'
