@@ -7,7 +7,7 @@
         <strong class="card-title">Listado de Categorias</strong>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-primary" onclick="abrir_modal_creacion('{% url 'cl_app:crear_categoria' %}');">REGISTRAR CATEGORIA</button>
+        <button type="button" class="btn btn-primary" onclick="abrir_modal_creacion('{% url 'cl_app:crear_categoria' %}');">REGISTRAR CATEGORÍA</button>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <tr>
       <th data-priority="0">Habilitada</th>
       {% comment %} <th data-priority="1">Id Categoria</th> {% endcomment %}
-      <th data-priority="2">Nombre de la Categoria</th>
+      <th data-priority="2">Nombre de la Categoría</th>
       <th data-priority="3">Margen o Porciento</th>
       <th data-priority="4">Margen Comercial CUP</th>
       <th colspan="" data-priority="5">Opciones</th>
@@ -33,7 +33,7 @@
           <td>{{categoria.nombre}}</td>
           <td><input type="checkbox" {% if categoria.margporc %} checked="checked"{% endif %} disabled="disabled" ></td>
           <td>{{categoria.valormag}}</td>
-          <td><button onclick="abrir_modal_creacion('{% url 'cl_app:editar_categoria' categoria.slug %}')" class="btn btn-info">Editar</button>
+          <td><button onclick="abrir_modal_edicion('{% url 'cl_app:editar_categoria' categoria.slug  %}')" class="btn btn-info">Editar</button>
           <a href="{% url 'cl_app:eliminar_categoria' categoria.slug %}" class="btn btn-danger">Eliminar</a></td>
         </tr>
         {% endfor %}
@@ -79,11 +79,16 @@
 {% endblock %}
 {% block extra_js %}
 <script type="text/javascript">
-  function abrir_modal_creacion(url){
+  function abrir_modal_edicion(url){
     $('#edicion').load(url, function(){
       $(this).modal('show');
     });
   }
+  function abrir_modal_creacion(url){
+    $('#creacion').load(url, function(){
+      $(this).modal('show');
+    });
+  }  
 </script>
 {% endblock %}
 {% endblock %}

@@ -20,7 +20,7 @@ class ListarCat(ListView):
 
 class EditarCat(UpdateView):
     model = Categoria 
-    template_name = 'Categorias/categoria.html'
+    template_name = 'Categorias/editarCat.html'
     form_class = CategoriaForm
     success_url = reverse_lazy('cl_app:listar_categorias')
 
