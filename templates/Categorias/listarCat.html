@@ -34,7 +34,7 @@
           <td><input type="checkbox" {% if categoria.margporc %} checked="checked"{% endif %} disabled="disabled" ></td>
           <td>{{categoria.valormag}}</td>
           <td><button onclick="abrir_modal_edicion('{% url 'cl_app:editar_categoria' categoria.slug  %}')" class="btn btn-info">Editar</button>
-          <a href="{% url 'cl_app:eliminar_categoria' categoria.slug %}" class="btn btn-danger">Eliminar</a></td>
+          <button onclick="abrir_modal_eliminar('{% url 'cl_app:eliminar_categoria' categoria.slug %}')" class="btn btn-danger">Eliminar</a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -79,6 +79,7 @@
 {% endblock %}
 {% block extra_js %}
 <script type="text/javascript">
+  var $ = jQuery.noConflict();
   function abrir_modal_edicion(url){
     $('#edicion').load(url, function(){
       $(this).modal('show');
@@ -86,6 +87,11 @@
   }
   function abrir_modal_creacion(url){
     $('#creacion').load(url, function(){
+      $(this).modal('show');
+    });
+  }
+  function abrir_modal_eliminar(url){
+    $('#eliminacion').load(url, function(){
       $(this).modal('show');
     });
   }  
