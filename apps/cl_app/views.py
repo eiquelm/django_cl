@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 class Inicio(TemplateView):
-    template_name = 'index.html'
+    template_name = 'cl_app/index.html'
 
 class ListarCat(ListView):
     model = Categoria
@@ -20,7 +20,7 @@ class ListarCat(ListView):
 
 class EditarCat(UpdateView):
     model = Categoria 
-    template_name = 'Categorias/crearCat.html'
+    template_name = 'Categorias/categoria.html'
     form_class = CategoriaForm
     success_url = reverse_lazy('cl_app:listar_categorias')
 

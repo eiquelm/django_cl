@@ -33,7 +33,7 @@
           <td>{{categoria.nombre}}</td>
           <td><input type="checkbox" {% if categoria.margporc %} checked="checked"{% endif %} disabled="disabled" ></td>
           <td>{{categoria.valormag}}</td>
-          <td><a href="editar_categoria/{{categoria.slug}}" class="btn btn-info">Editar</a>
+          <td><a href="{% url 'cl_app:editar_categoria' categoria.slug %}" class="btn btn-info">Editar</a>
           <a href="{% url 'cl_app:eliminar_categoria' categoria.slug %}" class="btn btn-danger">Eliminar</a></td>
         </tr>
         {% endfor %}
@@ -41,7 +41,13 @@
   </table>
 </div>
 
-<div class="modal fade" id="editar" role="dialog">
+<div class="modal fade" id="creacion" role="dialog">
+
+</div>
+<div class="modal fade" id="edicion" role="dialog">
+
+</div>
+<div class="modal fade" id="eliminacion" role="dialog">
 
 </div>
 
@@ -71,4 +77,7 @@
     });
   </script>
 {% endblock %}
+{% block extra_js %}
+
+ {% endblock %}
 {% endblock %}
